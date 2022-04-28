@@ -31,7 +31,5 @@ public class Move : MonoBehaviour
     private void FixedUpdate()
     {  
        theplayer.AddForce(transform.right*forceRate);
-       
-      
     }
 }
