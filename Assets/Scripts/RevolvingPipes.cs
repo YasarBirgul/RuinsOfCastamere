@@ -6,33 +6,37 @@ using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class RevolvingPipes : MonoBehaviour
-{   //// Pipe Components ////
-    
+{
+    //// Pipe Components ////
+
+
     // Pipe Rotation Speed
-    [SerializeField] public float pipeRotationSpeed=5;
+    [SerializeField] public float pipeRotationSpeed = 5;
+
     // Pipe Transform info
     [SerializeField] public Transform pipeTransformData;
 
+    public float positionX;
 
-    
-    public Quaternion rotation = Quaternion.identity;
+
+
+
     /// Pipe Spawner Components
     ///
     private float spawnPlatTo;
-    
+
+    private int randomInt;
+
     // Randomizer Float
     private float platformNumber;
 
-    private Vector3 platformLenght;
-    // Pipe Types
-    
-    
-    
-    [SerializeField] public GameObject regular;
-    [SerializeField] public GameObject SeconderPipe;
-    
-    
-    
+    private Vector3 platformSpawnPoint;
+
+    // Pipe Type list
+    [SerializeField] public Quaternion rotation = Quaternion.identity;
+    public GameObject[] spawnPipePlatforms;
+
+
     // Catching...
     void Start()
     {
@@ -43,46 +47,33 @@ public class RevolvingPipes : MonoBehaviour
     // Rotation of the pipe by accelerator ınput
     void Update()
     {
-        pipeTransformData.transform.Rotate(Input.acceleration.x*pipeRotationSpeed, 0, 0, Space.World);
+        pipeTransformData.transform.Rotate(Input.acceleration.x * pipeRotationSpeed, 0, 0, Space.World);
     }
-  
+
     // Endless Pipe Generator
-    
-       
-       
-    private void OnTriggerEnter(Collider other)
-    { 
-        // thePipe_.transform.position = new Vector3(pipeTransformData.transform.localScale.y*(-4) + thePipe_.transform.position.x , 0, 0);
-        //  thePipe_.transform.position = new Vector3(pipeTransformData.transform.lossyScale.y*(-4) + thePipe_.transform.position.x,0,0); 
-        platformNumber = Random.Range(1, 3);
-        platformLenght = new Vector3(pipeTransformData.transform.lossyScale.y*-4 + gameObject.transform.position.x,0,0);
-
-        if (other.CompareTag("Player"))
+       private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
         {
-            if(platformNumber == 1) {
-                         
-                Instantiate( regular, platformLenght,rotation);
-               
-
-            } 
-            if(platformNumber == 2)
-            {
-                Instantiate(SeconderPipe,platformLenght,rotation);
-                
-            }
-                     
-                     
-                     
+            spawnRandomPipes();
         }
-      
-      
-      
-      
-    } 
-    
+
+       
+    }
+ void spawnRandomPipes()
+        {
+            
+            randomInt = Random.Range(0, spawnPipePlatforms.Length);
+            Instantiate(spawnPipePlatforms[randomInt], platformSpawnPoint, Quaternion.identity);
+            Destroy(gameObject);
+            positionX -= 100;
+            platformSpawnPoint = new Vector3(positionX, 0, 0);
+            
+            Debug.Log(positionX);
+        }
 }
-    
-    //void PipeSpawner(float floatValue)
+
+//void PipeSpawner(float floatValue)
  // { 
  //      
  //     float y = spawnPlatTo;
