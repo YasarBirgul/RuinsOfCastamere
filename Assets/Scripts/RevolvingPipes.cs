@@ -25,6 +25,9 @@ public class RevolvingPipes : MonoBehaviour
 
     private Vector3 platformLenght;
     // Pipe Types
+    
+    
+    
     [SerializeField] public GameObject regular;
     [SerializeField] public GameObject SeconderPipe;
     
@@ -44,32 +47,40 @@ public class RevolvingPipes : MonoBehaviour
     }
   
     // Endless Pipe Generator
+    
+       
+       
     private void OnTriggerEnter(Collider other)
     { 
         // thePipe_.transform.position = new Vector3(pipeTransformData.transform.localScale.y*(-4) + thePipe_.transform.position.x , 0, 0);
-      //  thePipe_.transform.position = new Vector3(pipeTransformData.transform.lossyScale.y*(-4) + thePipe_.transform.position.x,0,0); 
-       platformNumber = Random.Range(1, 3);
-       platformLenght = new Vector3(pipeTransformData.transform.lossyScale.y*-4 + gameObject.transform.position.x,0,0);
-       
-       if (other.CompareTag("Player"))
-       
-       
-       if(platformNumber == 1) {
-              
-              Instantiate( regular, platformLenght,rotation);
-              gameObject.SetActive(false);
+        //  thePipe_.transform.position = new Vector3(pipeTransformData.transform.lossyScale.y*(-4) + thePipe_.transform.position.x,0,0); 
+        platformNumber = Random.Range(1, 3);
+        platformLenght = new Vector3(pipeTransformData.transform.lossyScale.y*-4 + gameObject.transform.position.x,0,0);
 
-          } 
-          if(platformNumber == 2)
-          {
-              Instantiate(SeconderPipe,platformLenght,rotation);
-              gameObject.SetActive(false);
-          }
+        if (other.CompareTag("Player"))
+        {
+            if(platformNumber == 1) {
+                         
+                Instantiate( regular, platformLenght,rotation);
+               
+
+            } 
+            if(platformNumber == 2)
+            {
+                Instantiate(SeconderPipe,platformLenght,rotation);
+                
+            }
+                     
+                     
+                     
+        }
       
       
       
       
     } 
+    
+}
     
     //void PipeSpawner(float floatValue)
  // { 
@@ -95,6 +106,6 @@ public class RevolvingPipes : MonoBehaviour
  //         y += Random.Range(1.9f, 2.1f);
  //     } spawnPlatTo = floatValue;  
  //   
-    }    
+        
     
 
