@@ -771,3 +771,4 @@ MonoBehaviour:
   spawnPipePlatforms:
   - {fileID: 4389172677333526224}
   - {fileID: 412634554777253045, guid: 4367db868aa6ee64f9b02ae3e51671a5, type: 3}
+  - {fileID: 7213870981490277622, guid: 4bfe979fd9005cb4ca9c5b3a8b0ba3c7, type: 3}

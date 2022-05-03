@@ -19,20 +19,36 @@ public class RevolvingPipes : MonoBehaviour
     // Pipe Type list
     [SerializeField] public Quaternion rotation = Quaternion.identity;
     public GameObject[] spawnPipePlatforms;
+   
+    
+    
     // Catching...
     void Start() {
+      
+        
+        
         pipeTransformData = GetComponent<Transform>();
     }  
     // Rotation of the pipe by accelerator ınput
     void Update() {
+        
+        
+        
+        
         pipeTransformData.transform.Rotate(Input.acceleration.x * pipeRotationSpeed, 0, 0, Space.World);
     }
     // Endless Pipe Generator
     private void OnTriggerEnter(Collider other)
-    { if (other.gameObject.CompareTag("Player")) {
-            spawnRandomPipes(); 
+    { 
+        
+        if (other.gameObject.CompareTag("Player")) 
+        
+        {
+            spawnRandomPipes();
         }
-    } 
+    }
+
+
     void spawnRandomPipes()
     {   randomInt = Random.Range(0, spawnPipePlatforms.Length);
             platformSpawnPoint = new Vector3(gameObject.transform.position.x-200, 0, 0);
