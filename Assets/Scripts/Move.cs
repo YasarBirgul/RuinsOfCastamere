@@ -20,6 +20,6 @@ public class Move : MonoBehaviour
     // Players Rigidbody Force for the main movement...
     private void FixedUpdate()
     {  
-       theplayer.AddForce(transform.right*forceRate);
+       theplayer.AddForce(transform.forward*forceRate);
     }
 }
